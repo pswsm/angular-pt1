@@ -13,17 +13,20 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +79 src/app/components/register/register.component.html
-badd +14 src/app/components/register/register.component.ts
-badd +3 src/app/app.component.html
+badd +1 src/app/components/register/register.component.html
+badd +27 src/app/components/register/register.component.ts
+badd +2 src/app/app.component.html
 badd +13 src/app/app-routing.module.ts
-badd +1 src/app/components/login/login.component.html
+badd +5 src/app/components/login/login.component.html
+badd +11 src/app/classes/user.ts
+badd +16 src/app/services/user-service.service.ts
+badd +23 src/app/components/login/login.component.ts
 argglobal
 %argdel
 $argadd src/app/components/register/register.component.html
-edit src/app/components/register/register.component.ts
+edit src/app/components/register/register.component.html
 argglobal
-balt src/app/components/register/register.component.html
+balt src/app/components/register/register.component.ts
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -34,12 +37,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 14 - ((13 * winheight(0) + 23) / 46)
+let s:l = 57 - ((17 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 14
-normal! 0123|
+keepjumps 57
+normal! 06|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
