@@ -1,7 +1,16 @@
-<h1>Welcome to the page.</h1>
-<div class="container">
-	<a href="/"><div>Home</div></a>
-	<a href="/login"><div>login</div></a>
-	<a href="/register"><div>register</div></a>
-</div>
+<nav class="navbar  navbar-expand-lg navbar-dark bg-primary" role="navigation">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">PT1</a>
+		<button class="navbar-toggler" type="button" data-bd-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div id="navbar" class="collapse navbar-collapse">
+			<div class="navbar-nav">
+				<a class="nav-link" href="/"><div>Home</div></a>
+				<a class="nav-link" href="/login"><div>Login</div></a>
+				<a class="nav-link" href="register"><div>Register</div></a>
+			</div>
+		</div>
+	</div>
+</nav>
 <router-outlet></router-outlet>

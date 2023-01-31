@@ -1,50 +1,78 @@
-<form [formGroup]="regForm" (ngSubmit)="submit">
-	<label for="nom">Nom:
-		<input type="text" formControlName="nom">
-	</label>
-	<span class="error" *ngIf="this.regForm.get('nom')?.errors?.['required'] && this.regForm.get('nom')?.touched">El nom no po ser buit</span>
-	<span class="error" *ngIf="this.regForm.get('nom')?.errors?.['minlength'] && this.regForm.get('nom')?.touched">El nom no pot tenir menys de 6 lletres</span>
-	<span class="error" *ngIf="this.regForm.get('nom')?.errors?.['pattern'] && this.regForm.get('nom')?.touched">Només s'admenten lletres llatines en el nom</span>
-	<label for="correu">Correu electrònic:
-		<input type="text" formControlName="correu">
-	</label>
-	<span class="error" *ngIf="this.regForm.get('correu')?.errors?.['required'] && this.regForm.get('correu')?.touched">Correu invàlid</span>
-	<!-- <span class="error" *ngIf="this.regForm.get('correu')?.errors?.['email'] && this.regForm.get('correu')?.touched">
-		pon bien el correu
-	</span> -->
+<h1>Formulari de Registre</h1>
+<form [formGroup]="regForm" (ngSubmit)="submit()">
+	<div class="form-group mt-4">
+		<label class="form-label" for="nom">Nom:</label>
+		<div class="col-sm-11">
+			<input class="form-control" type="text" formControlName="nom">
+		</div>
+		<span class="error" *ngIf="this.regForm.get('nom')?.errors?.['required'] && this.regForm.get('nom')?.touched">El nom no pot ser buit</span>
+		<span class="error" *ngIf="this.regForm.get('nom')?.errors?.['minlength'] && this.regForm.get('nom')?.touched">El nom no pot tenir menys de 6 lletres</span>
+		<span class="error" *ngIf="this.regForm.get('nom')?.errors?.['pattern'] && this.regForm.get('nom')?.touched">Només s'admenten lletres llatines en el nom</span>
+	</div>
+	<div class="form-group">
+		<label for="correu" class="form-label mt-4">Correu electrònic:</label>
+		<div class="col-sm-11">
+			<input type="text" class="form-control sm-10" formControlName="correu">
+		</div>
+	</div>
+	<span class="error" *ngIf="this.regForm.get('correu')?.errors?.['required'] && this.regForm.get('correu')?.touched">S'ha d'introduir un correu</span>
 	<span class="error" *ngIf="this.regForm.get('correu')?.errors?.['pattern'] && this.regForm.get('correu')?.touched">El correu no es valid</span>
-	<label for="contra">Contrassenya:
-		<input type="text" formControlName="contra">
-	</label>
-	<span class="error" *ngIf="this.regForm.get('contra')?.errors?.['required'] && this.regForm.get('contra')?.touched">
-		pon la contraseña
-	</span>
-	<span class="error" *ngIf="this.regForm.get('contra')?.errors?.['minlength'] && this.regForm.get('contra')?.touched">
-		minimo 8 caracteres
-	</span>
-	<label for="contrarepeat">Repetir la contrassenya:
-		<input type="text" formControlName="contrarepeat">
-	</label>
-	<span class="error" *ngIf="this.regForm.get('contra') != this.regForm.get('contrarepeat') && this.regForm.get('contrarepeat')?.touched">Les contrassenyes no són identiques.</span>
-	<p>Estat civil:</p>
-	<select formControlName="estat" name="estat" id="" >
-		<option *ngFor="let a of estat" value="{{a}}">{{a}}</option>
-	</select>
+	<div class="form-group">
+		<label class="form-label mt-4" for="contra">Contrasenya:</label>
+		<div class="col-sm-11">
+			<input type="password" class="form-control" formControlName="contra">
+		</div>
+	</div>
+	<span class="error" *ngIf="this.regForm.get('contra')?.errors?.['required'] && this.regForm.get('contra')?.touched">Introdueix una contrasenya</span>
+	<span class="error" *ngIf="this.regForm.get('contra')?.errors?.['minlength'] && this.regForm.get('contra')?.touched">Mínim 8 caràcters</span>
+	<div class="form-group col-sm-11">
+		<label class="form-label mt-4" for="contrarepeat">Repetir la contrasenya:</label>
+		<input class="form-control" type="password" formControlName="repetirContra" appRepetirContrassenya [param] = "this.regForm.value.contra">
+	</div>
+	<span class="error" *ngIf="this.regForm.get('repetirContra')?.errors?.['validateEqual'] && this.regForm.get('repetirContra')?.touched">Les contrassenyes no són identiques.</span>
+	<div class="form-group col-sm-4">
+		<label class="form-label mt-4" for="estat">Estat civil:</label>
+		<select class="form-select form-control" formControlName="estat" name="estat">
+			<option *ngFor="let a of estat" value="{{a}}">{{a}}</option>
+		</select>
+	</div>
 	<span *ngIf="this.regForm.get('estat')?.errors?.['required'] && this.regForm.get('estat')?.touched">Indica l'estat civil.</span>
-	<label for="sexe">Sexe:
-		<label><input type="radio" name="sexe" formControlName="sexe" value="dona">Dona</label>
-		<label><input type="radio" name="sexe" formControlName="sexe" value="home">Home</label>
-		<label><input type="radio" name="sexe" formControlName="sexe" value="altres">Altres</label>
-	</label>
+	<div class="col-sm-6">
+		<label  class="form-label mt-4" for="sexe">Sexe:</label>
+		<div class="form-group col-sm-11">
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="sexe" formControlName="sexe" id="sexef" value="dona">
+				<label class="form-check-label" for="sexef">Dona</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="sexe" formControlName="sexe" id="sexem" value="home">
+				<label class="form-check-label" for="sexem">Home</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="sexe" formControlName="sexe" id="altre" value="altres">
+				<label class="form-check-label" for="altre">Altres</label>
+			</div>
+		</div>
+	</div>
+	
 	<span *ngIf="this.regForm.get('sexe')?.errors?.['required'] && this.regForm.get('sexe')?.touched">Indica un genere.</span>
 
-	<p> De que vols rebre l'informacio:</p>
-	<p *ngFor="let i of info">
-		<input type="checkbox" value="{{i}}">{{i}} 
-	</p>
-
-	<p>Aceptar condicions:<input type="checkbox" formControlName="checkConds"></p>
-	<span *ngIf="this.regForm.get('checkConds')?.errors?.['required'] && this.regForm.get('checkConds')?.touched">Has d'acceptar les condicions</span>
+	<div class="col-sm-6 mt-4">
+		<label class="form-label" for="">Selecciona de que vols rebre infromació:</label>
+		<div class="form-group">
+			<div *ngFor="let i of info" class="form-check form-check-inline" >
+				<input class="form-check-input" type="checkbox" value="{{i}}" formControlName="interests" name="interests" id="interest{{i}}">
+				<label class="form-check-label" for="interest{{i}}">{{i}}</label>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="form-group form-check form-check-inline">
+		<input class="form-check-input" type="checkbox" formControlName="checkConds">
+		<label class="form-check-label" for="">Acceptar condicions</label>
+		<span *ngIf="this.regForm.get('checkConds')?.errors?.['required'] && this.regForm.get('checkConds')?.touched">Has d'acceptar les condicions</span>
+	</div>
+	<hr>
 	<!-- <p>Edad:</p>      
 		<input type="number" formControlName="edad" appEntrevalores>
 		<span *ngIf="this.regForm.get('edad')?.errors?.['required'] && this.regForm.get('edad')?.touched">
@@ -53,5 +81,13 @@
 		<span *ngIf="this.regForm.get('edad')?.errors?.['entre'] && this.regForm.get('edad')?.touched">
 			Pon la edad entre 18 y 100
 		</span> -->
-	<button type="submit" [disabled]="regForm.invalid">Registrar</button>
+	<!-- <button type="submit" [disabled]="!regForm.valid">Registrar</button> -->
+	<div class="form-group mt-4" id="btn">
+		<button type="submit" class="btn btn-is-secondary" [disabled]="regForm.invalid">Registrar</button>
+	</div>
 </form>
+<hr>
+<div class="col-sm-6 mt-4 dist">
+	{{dades}}
+</div>
+<hr>

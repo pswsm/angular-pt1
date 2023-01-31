@@ -12,8 +12,8 @@ export class UserServiceService {
 		this.userList = [
 			new User('pswsm', 'pswsm', 'admin', 'pau@pswsm.cat', 'solter', [], true)
 		]
-		for (let index = 0; index < 51; index++) {
-			let nUser: User = new User(`user{index}`, `pass{index}`, 'comprador', `user{index}@mail.cat`, 'solter', [], true);
+		for (let index = 0; index < 49; index++) {
+			let nUser: User = new User(`user${index}`, `password${index}`, 'comprador', `user${index}@mail.cat`, 'solter', [], true);
 			this.userList = [...this.userList, nUser];
 		}
 	}
@@ -57,5 +57,12 @@ export class UserServiceService {
 			}
 		}
 		return 0;
+	}
+
+	/**
+	 * appendUser
+	 */
+	public appendUser(user: User) {
+		this.userList.push(user);
 	}
 }

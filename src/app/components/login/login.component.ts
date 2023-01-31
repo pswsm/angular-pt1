@@ -21,6 +21,12 @@ export class LoginComponent {
 	submit() {
 		let username: any = this.loginForm.get('nom')?.value;
 		let password: any = this.loginForm.get('contra')?.value;
+
+		let userExists: User | number = this.userService.getUserFromUsername(username, password);
+
+		if (userExists instanceof User) {
+			// TODO: do login cookie
+		}
 	}
 
 }

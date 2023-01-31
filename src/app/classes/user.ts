@@ -1,4 +1,12 @@
 export class User {
+
+	nom: string;
+	contra: string;
+	rol: string;
+	correu: string;
+	estat: string;
+	checkConds: boolean;
+	interessos: string[];
 	/**
 	 * User class
 	 * username: string,
@@ -19,59 +27,31 @@ export class User {
 		this.interessos = interests;
 	}
 
-	private set nom(v : string) {
-		this.nom = v;
-	}
-
-	private set contra(v : string) {
-		this.contra = v;
-	}
-
-	private set rol(v : string) {
-		this.rol = v;
-	}
-
-	private set correu(v : string) {
-		this.correu = v;
-	}
-
-	private set estat(v : string) {
-		this.estat = v;
-	}
-
-	private set checkConds(v : boolean) {
-		this.checkConds = v;
-	}
-
-	private set interessos(v : string[]) {
-		this.interessos = v;
-	}
-
-	public get nom() {
+	public get _nom() {
 		return this.nom;
 	}
 
-	public get contra() {
+	public get _contra() {
 		return this.contra;
 	}
 
-	public get rol() {
+	public get _rol() {
 		return this.rol;
 	}
 
-	public get correu() {
+	public get _correu() {
 		return this.correu;
 	}
 
-	public get estat() {
+	public get _estat() {
 		return this.estat;
 	}
 
-	public get checkConds() {
+	public get _checkConds() {
 		return this.checkConds;
 	}
 
-	public get interessos() {
+	public get _interessos() {
 		return this.interessos;
 	}
 }

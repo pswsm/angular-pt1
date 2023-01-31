@@ -1,8 +1,7 @@
-label { 
-	display: block;
-	margin: 1rem 0;
+input, select, label, #btn, span, div.dist {
+	margin-left: 1rem !important;
 }
 
-input {
-	margin-left: 1em;
+span.error {
+	color: #d33682;
 }
