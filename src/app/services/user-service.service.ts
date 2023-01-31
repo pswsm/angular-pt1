@@ -9,11 +9,12 @@ export class UserServiceService {
 	private userList: User[];
 
 	constructor() {
+		let genreList: string[] = ['home', 'dona', 'altres'];
 		this.userList = [
-			new User('pswsm', 'pswsm', 'admin', 'pau@pswsm.cat', 'solter', [], true)
+			new User('pauseawesome', 'pauseawesome', 'admin', 'pau@pswsm.cat', 'solter', [], true, 'home')
 		]
 		for (let index = 0; index < 49; index++) {
-			let nUser: User = new User(`user${index}`, `password${index}`, 'comprador', `user${index}@mail.cat`, 'solter', [], true);
+			let nUser: User = new User(`user${index}`, `password${index}`, 'comprador', `user${index}@mail.cat`, 'solter', [], true, genreList[ index % 2 ]);
 			this.userList = [...this.userList, nUser];
 		}
 	}
@@ -48,7 +49,7 @@ export class UserServiceService {
 	 */
 	public getUserFromUsername(username: string, password: string) : User | number {
 		for (const usr of this.userList) {
-			let placeholderUser: User = new User(username, password, '', '', '', [], true);
+			let placeholderUser: User = new User(username, password, '', '', '', [], true, '');
 			if (usr.nom === placeholderUser.nom) {
 				if (usr.contra === placeholderUser.contra) {
 					return usr;

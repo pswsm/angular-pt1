@@ -61,7 +61,7 @@
 		<label class="form-label" for="">Selecciona de que vols rebre infromació:</label>
 		<div class="form-group">
 			<div *ngFor="let i of info" class="form-check form-check-inline" >
-				<input class="form-check-input" type="checkbox" value="{{i}}" formControlName="interests" name="interests" id="interest{{i}}">
+				<input (change)="onChange(i)" class="form-check-input" type="checkbox" value="{{i}}" formControlName="interests" name="interests" id="interest{{i}}">
 				<label class="form-check-label" for="interest{{i}}">{{i}}</label>
 			</div>
 		</div>
@@ -83,7 +83,7 @@
 		</span> -->
 	<!-- <button type="submit" [disabled]="!regForm.valid">Registrar</button> -->
 	<div class="form-group mt-4" id="btn">
-		<button type="submit" class="btn btn-is-secondary" [disabled]="regForm.invalid">Registrar</button>
+		<button type="submit" class="btn btn-is-primary" [disabled]="regForm.invalid">Registrar</button>
 	</div>
 </form>
 <hr>

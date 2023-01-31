@@ -1,6 +1,16 @@
 <h1>Login:</h1>
-<form>
-	<label for="username">Username:<input type="text" name="username"></label>
-	<label for="password">Password:<input type="password" name="password"></label>
-	<button type="submit">Log in</button>
+<form [formGroup]='loginForm' (ngSubmit)='submit()'>
+	<div class="form-group col-sm-6">
+		<label for="username" class='form-label mt-4'>Username:</label>
+		<input type="text" name="username" class='form-control' formControlName='nom'>
+	</div>
+	<div class="form-group col-sm-6">
+		<label class="form-label mt-4" for="password">Password:</label>
+		<input class="form-control" type="password" name="password" formControlName='contra'>
+	</div>
+	<hr>
+	<div class="form-group mt-4" id="btn">
+		<button type="submit" class="btn btn-is-primary" [disabled]="loginForm.invalid || userLoggedAlready">Log In</button>
+	</div>
 </form>
+<p>{{resMsg}}</p>
