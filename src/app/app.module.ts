@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RepetirContrassenyaDirective } from './diretives/repetir-contrassenya.directive';
+import { EventListComponent } from './components/event-list/event-list.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { RepetirContrassenyaDirective } from './diretives/repetir-contrassenya.d
     RegisterComponent,
     LoginComponent,
     RepetirContrassenyaDirective,
+    EventListComponent,
   ],
   imports: [
     BrowserModule,

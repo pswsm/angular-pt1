@@ -9,6 +9,11 @@
 				<a class="nav-link" href="/"><div>Home</div></a>
 				<a class="nav-link" href="/login"><div>Login</div></a>
 				<a class="nav-link" href="register"><div>Register</div></a>
+				<a class="nav-link"><div (click)='logout()'>Logout</div></a>
+				<a class="nav-link"><div>&emsp;</div></a>
+				<div class="d-flex">
+					<span class='navbar-text' *ngIf="userObj !== undefined">Logged in as: {{userObj.username}} - Role: {{userObj.role}}</span>
+				</div>
 			</div>
 		</div>
 	</div>

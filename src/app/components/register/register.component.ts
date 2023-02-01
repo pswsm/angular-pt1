@@ -30,7 +30,7 @@ export class RegisterComponent {
 	});
 
 	submit() {
-		console.log('Before add: ', this.userServ.users);
+		// console.log('Before add: ', this.userServ.users);
 		
 		let nom: any = this.regForm.get('nom')?.value;
 		let correu: any = this.regForm.get('correu')?.value;
@@ -45,8 +45,7 @@ export class RegisterComponent {
 				this.userServ.appendUser(user);
 				this.dades = 'Usuari registrat correctament';
 				this.regForm.reset();
-				console.log('After add: ', this.userServ.users);
-				
+				// console.log('After add: ', this.userServ.users);
 				break;
 
 			case 1 | 2:
@@ -60,13 +59,12 @@ export class RegisterComponent {
 	}
 
 	onChange(value: string): void {
-		console.log('Fn start: ', this.checkedInfo);
+		// console.log('Fn start: ', this.checkedInfo);
 		if (this.checkedInfo.includes(value)) {
 			this.checkedInfo = this.checkedInfo.filter((item) => item !== value);
 		} else {
 			this.checkedInfo.push(value);
 		}
-		console.log('Fn end: ', this.checkedInfo);
-		
+		// console.log('Fn end: ', this.checkedInfo);
 	}
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/classes/user';
 import { UserServiceService } from 'src/app/services/user-service.service';
 
@@ -9,14 +10,14 @@ import { UserServiceService } from 'src/app/services/user-service.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-	constructor(private userService: UserServiceService) {}
+	constructor(private userService: UserServiceService, private router: Router) {}
 
 	userLoggedAlready: boolean = document.cookie.split('; ').find((row) => row.startsWith('userData=')) != undefined;
 
 	resMsg: string = '';
 
 	loginForm: FormGroup = new FormGroup({
-		nom: new FormControl("", [Validators.required, Validators.minLength(6)]),
+		nom: new FormControl("", [Validators.required]),
 		contra: new FormControl("", [Validators.required, Validators.minLength(8)])
 	})
 
@@ -36,6 +37,8 @@ export class LoginComponent {
 
 		if (userExists instanceof User) {
 			document.cookie = `userData=${JSON.stringify({username: userExists.nom, role: userExists.rol})}`
+			this.loginForm.reset();
+			this.router.navigate([`/`]).then(() => window.location.reload());
 		} else {
 			switch (userExists) {
 				case 1:
@@ -51,8 +54,6 @@ export class LoginComponent {
 					break;
 			}
 		}
-
-		this.loginForm.reset();
 	}
 
 }
