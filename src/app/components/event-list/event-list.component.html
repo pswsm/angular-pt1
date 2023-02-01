@@ -1,16 +1,32 @@
 <h1>Llista dels propers esdeveniments:</h1>
 <div class="col-sm-6 mt-4">
-	<ul>
-		<li *ngFor="let item of getEventList() | paginate: {
-					itemsPerPage: 10,
-					currentPage: p
-					}">
-			{{item.nom}}: {{item.lloc}}<br>
-			<p>Tipus: {{item.tipus}}</p>
-			<p>Preu: <b>{{ item.preu.toFixed(2).toLocaleUpperCase() }}€</b></p>
-			<p>Data: {{ item.data.toLocaleDateString() }}</p>
-			<hr>
-		</li>
-	</ul>
-	<pagination-controls (pageChange)="p = $event"></pagination-controls>
+	<div class="form-group">
+		<label class="form-label" for="itemsPerPage">Nombre de files:</label>
+		<input class="form-control" type="number" name="itemsPerPage" [value]='ipp' (change)='onTableSizeChange($event)'>
+	</div>
+	<hr>
+	<table class='table table-hover table-striped'>
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Lloc</th>
+				<th>Tipus</th>
+				<th>Data</th>
+				<th>Preu</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let item of getEventList() | paginate: {
+						itemsPerPage: ipp,
+						currentPage: p
+						}">
+				<td>{{ item.nom }}</td>
+				<td>{{ item.lloc }}</td>
+				<td>{{ item.tipus }}</td>
+				<td><b>{{ item.preu.toFixed(2).toLocaleUpperCase() }}€</b></td>
+				<td>{{ item.data.toLocaleDateString() }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<pagination-controls (pageChange)="p = $event" previousLabel='Anterior' nextLabel='Següent'></pagination-controls>
 </div>

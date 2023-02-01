@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/classes/user';
+import { CookieServiceService } from 'src/app/services/cookie-service.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
@@ -10,9 +11,9 @@ import { UserServiceService } from 'src/app/services/user-service.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-	constructor(private userService: UserServiceService, private router: Router) {}
+	constructor(private userService: UserServiceService, private cookieService: CookieServiceService, private router: Router) {}
 
-	userLoggedAlready: boolean = document.cookie.split('; ').find((row) => row.startsWith('userData=')) != undefined;
+	userLoggedAlready: boolean = this.cookieService.getCookie('userData') != undefined;
 
 	resMsg: string = '';
 
@@ -55,5 +56,4 @@ export class LoginComponent {
 			}
 		}
 	}
-
 }

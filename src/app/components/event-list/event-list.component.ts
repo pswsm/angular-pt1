@@ -16,6 +16,12 @@ export class EventListComponent {
 	p: number = 1;
 
 	/**
+	 * the number of items per page
+	 * default is 10
+	 */
+	ipp: number = 10;
+
+	/**
 	 * event list getter wrapper
 	 * return an aray of Event
 	 */
@@ -24,4 +30,10 @@ export class EventListComponent {
 	}
 
 	filterQuery: string = '';
+
+	onTableSizeChange(event:any): void {
+		this.ipp = event.target.value;
+		this.p = 1;
+		this.getEventList();
+	}
 }
