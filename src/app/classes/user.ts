@@ -60,4 +60,18 @@ export class User {
 	public get genere() : string {
 		return this.#genere;
 	}
+
+	/**
+	 * toJSON
+	 */
+	public toJSON() {
+		return { nom: this.nom, contra: this.contra, rol: this.rol, correu: this.correu, estat: this.estat, checkConds: this.checkConds, interessos: this.interessos, genere: this.genere }
+	}
+
+	/**
+	 * fromJSON
+	 */
+	public static fromJSON(obj:{ nom: string, contra: string, rol: string, correu: string, estat: string, checkConds: boolean, interessos: string[], genere: string } ) {
+		return new User(obj.nom, obj.contra, obj.rol, obj.correu, obj.estat, obj.interessos, obj.checkConds, obj.genere);
+	}
 }

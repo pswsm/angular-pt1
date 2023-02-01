@@ -98,9 +98,7 @@ export class UserServiceService {
 		if (localUsers !== null) {
 			let localUserArray: any[] = JSON.parse(localUsers);
 			localUserArray.push(user.toJSON());
-			localStorage.setItem('userList', JSON.stringify(localUserArray));
-		} else {
-			localStorage.setItem('userList', JSON.stringify([user.toJSON()]))
+			localStorage.setItem('userList', JSON.stringify(localUserArray))
 		}
 	}
 }

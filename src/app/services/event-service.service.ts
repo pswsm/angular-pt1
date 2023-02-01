@@ -61,7 +61,8 @@ export class EventServiceService {
 				nType,
 				this.#getRandomDate(),
 				sites[Math.floor(Math.random() * sites.length)],
-				Math.random() * 200
+				Math.random() * 200,
+				index
 			);
 			this.eventList = [...this.eventList, nEvent];
 		}
@@ -69,10 +70,18 @@ export class EventServiceService {
 
 	/**
 	 * event list getter
-	 * @return eventList Event[]
+	 * @returns eventList Event[]
 	 */
 	public get events() : Event[] {
 		return this.eventList;
+	}
+
+	/**
+	 * setter for eventList
+	 * @param v Event[] A list of events
+	 */
+	private set events(v : Event[]) {
+		this.eventList = v;
 	}
 
 	/**
@@ -82,5 +91,36 @@ export class EventServiceService {
 		let from: number = new Date().getTime();
 		let to: number = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).getTime();
 		return new Date(Math.floor(Math.random() * (to - from + 1) + from));
+	}
+
+	/**
+	 * Deletes the given Event object from the array. Compares by name
+	 * @param eventName
+	 * @returns Event[] The filtered original array
+	 */
+	public deleteEventByName(eventName: string): void {
+		let newEvents: Event[] = this.events.filter(evn => evn.nom !==  eventName);
+		this.events = newEvents;
+	}
+
+	/**
+	 * Deletes the given Event object from the array using the unique ID
+	 * @param eventId
+	 * @returns Event[] The filtered original array
+	 */
+	public deleteEventById(eventId: number): void {
+		let newEvents: Event[] = this.events.filter(evn => evn.id !==  eventId);
+		this.events = newEvents;
+	}
+
+	/**
+	 * Filters the events by location, but does not drop them out. No params means no filter is applied
+	 */
+	public filterLocation(value: string) {
+		if (value === '') {
+			return this.events;
+		} else {
+			return this.events.filter(event => event.lloc.toLowerCase().startsWith(value.toLowerCase()));
+		}
 	}
 }

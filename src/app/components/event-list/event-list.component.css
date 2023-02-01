@@ -5,3 +5,7 @@ h1 {
 div { 
 	margin: auto;
 }
+
+.ngx-pagination-cust {
+	text-align: center;
+}
