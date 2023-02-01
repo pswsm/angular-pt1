@@ -55,7 +55,7 @@ export class EventServiceService {
 		this.eventList = [];
 		for (let index = 0; index < 100; index++) {
 			let nType: string = eventTypeList[Math.floor(Math.random() * eventTypeList.length)]
-			let nNom: string = nType + noms[Math.floor(Math.random() * noms.length)];
+			let nNom: string = nType + ' ' + noms[Math.floor(Math.random() * noms.length)];
 			let nEvent: Event = new Event(
 				nNom,
 				nType,
@@ -67,13 +67,20 @@ export class EventServiceService {
 		}
 	}
 
-	public get users() : Event[] {
+	/**
+	 * event list getter
+	 * @return eventList Event[]
+	 */
+	public get events() : Event[] {
 		return this.eventList;
 	}
 
+	/**
+	 * Generates a random date betwen to day, and today but next year
+	 */
 	#getRandomDate(): Date {
 		let from: number = new Date().getTime();
-		let to: number = new Date(new Date().getFullYear() + 1).getTime();
-		return new Date(from + Math.random() * (to - from));
+		let to: number = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).getTime();
+		return new Date(Math.floor(Math.random() * (to - from + 1) + from));
 	}
 }

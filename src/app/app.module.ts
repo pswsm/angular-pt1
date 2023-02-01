@@ -9,6 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RepetirContrassenyaDirective } from './diretives/repetir-contrassenya.directive';
 import { EventListComponent } from './components/event-list/event-list.component';
+import { NgxPaginationModule } from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { EventListComponent } from './components/event-list/event-list.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-	ReactiveFormsModule
+	ReactiveFormsModule,
+	NgxPaginationModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

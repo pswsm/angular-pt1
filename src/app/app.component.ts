@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pt1-js';
+  constructor(private router: Router) {}
   user: string | undefined = document.cookie.split('; ').find((row) => row.startsWith('userData='))?.split('=')[1];
 
   userObj: { username: string, role: string } | undefined = undefined;
@@ -21,6 +23,6 @@ export class AppComponent {
 
   logout() {
 	  document.cookie = 'userData=; expires=Thu, 01 Jan 1970 00:00:00 GMT;';
-	  location.reload();
+	  this.router.navigate(['/']).then(() => location.reload());
   }
 }

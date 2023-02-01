@@ -1,1 +1,16 @@
-<p>event-list works!</p>
+<h1>Llista dels propers esdeveniments:</h1>
+<div class="col-sm-6 mt-4">
+	<ul>
+		<li *ngFor="let item of getEventList() | paginate: {
+					itemsPerPage: 10,
+					currentPage: p
+					}">
+			{{item.nom}}: {{item.lloc}}<br>
+			<p>Tipus: {{item.tipus}}</p>
+			<p>Preu: <b>{{ item.preu.toFixed(2).toLocaleUpperCase() }}€</b></p>
+			<p>Data: {{ item.data.toLocaleDateString() }}</p>
+			<hr>
+		</li>
+	</ul>
+	<pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
